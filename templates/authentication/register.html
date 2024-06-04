@@ -1,0 +1,56 @@
+{% extends 'base_auth.html' %} {% load static %} {% block content %}
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <div class="card mt-5">
+      <div class="card-body">
+        <div class="card-title py-3">
+          <h4 class="text-center">Sign Up</h4>
+        </div>
+        <form action="{% url 'register' %}" method="POST">
+          {% csrf_token %} {% include 'partials/_messages.html' %}
+          <div class="form-group">
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              id="usernameField"
+              value="{{fieldValues.username}}"
+              class="form-control form-control-sm"
+              required
+            />
+          </div>
+          <div
+            class="invalid_feedback invalid-feedback"
+            style="display: none"
+          ></div>
+          <p class="text-sm text-success usernameSuccessOutput"></p>
+          <div class="form-group">
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              class="form-control form-control-sm"
+              id="passwordField"
+              required
+            />
+            <small class="float-right py-3 showPasswordToggle">SHOW</small>
+          </div>
+          <input
+            type="submit"
+            value="Register"
+            class="btn btn-block btn-primary submit-btn"
+          />
+          <div class="card-title py-2">
+            <p class="text-center">
+              Already a member?
+              <a data-toggle="tab" href="{% url 'login' %}">Sign In</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{% static 'js/registeration.js' %}"></script>
+{% endblock content %}
